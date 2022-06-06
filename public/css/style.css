@@ -1,0 +1,71 @@
+ul {
+    padding: 0px;
+}
+
+.header_input {
+    display: flex;
+}
+
+.navbar-expand-md .navbar-nav {
+    margin-left: 350px;
+}
+
+.header_input_search {
+    display: flex;
+    margin-right: 50px;
+}
+
+.main_container {
+    max-width: 1120px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.sideNav {
+    margin-right: 50px;
+}
+
+.category_nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.category_nav button {
+    margin-right: 10px;
+}
+
+.list_wrapper {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f0f8ff;
+}
+
+.list {
+    list-style: none;
+    padding-bottom: 30px;
+}
+
+.list_item {
+    width: 100px;
+}
+
+.button_wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button_wrapper button {
+    margin-left: 10px;
+}
+
+/* 編集ボタンを押下するまで非表示にする */
+.edit {
+    display: none;
+}
+
+/* 各ページのエラーメッセージを赤色にする */
+.error_message {
+    color: red;
+}

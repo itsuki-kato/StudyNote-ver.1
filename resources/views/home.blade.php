@@ -1,0 +1,92 @@
+@extends('layouts.app')
+
+@section('sideNav')
+    <div class="sideNav">
+        <div class="category_nav">
+            <button>カテゴリフォルダ</button>
+            <button>カテゴリフォルダ</button>
+            <button>カテゴリフォルダ</button>
+            <button>カテゴリフォルダ</button>
+            <button>カテゴリフォルダ</button>
+        </div>
+    </div>
+@endsection @section('content') <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- 検索フォーム -->
+            <form action="{{ route('home') }}" method="get">
+                @csrf
+                <div class="header_input_search">
+                    <input name="keyword" type="text" value="{{ $keyword }}">
+                    <p><input type="submit" value="送信"></p>
+                </div>
+            </form>
+            <div class="card">
+                <div class="card-header">
+                    <span>学習メモ</span>
+                    <i class="fa-solid fa-cat"></i>
+                </div>
+                <div class="card-body">
+                    <!-- @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif -->
+                    <div class="lists_wrapper">
+                        <ul>
+                            @foreach($Texts as $Text)
+                                <div class="list_wrapper">
+                                    <li class="list">
+                                        <table>
+                                            <tr>
+                                                <th class="list_item">id</th>
+                                                <td>{{ $Text->id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="list_item">本文</th>
+                                                <td>{{ $Text->text }}</td>
+                                                <tr class="edit">
+                                                    <th></th>
+                                                    <td>
+                                                        <textarea name="text" id="" cols="30" rows="10">{{ old('description', $Text->text) }}</textarea>
+                                                    </td>
+                                                </tr>
+                                            </tr>
+                                            <tr>
+                                                @foreach($Categories as $Category)
+                                                    @if($Text->category_id == $Category->id)
+                                                        <th class="list_item">カテゴリ名</th>
+                                                        <td>{{ $Category->name }}</td>
+                                                        <!-- 一致した時点でブレークする -->
+                                                        @break
+                                                    @endif
+                                                @endforeach
+                                            </tr>
+                                        </table>
+                                        <tr>
+                                            <th></th>
+                                            <td>
+                                                <div class="button_wrapper">
+                                                    <a href="{{ route('edit', ['id' => $Text->id]) }}">
+                                                        <button id="edit_btn">編集</button>
+                                                    </a>
+                                                    <form action="{{ route('delete', ['id' => $Text->id]) }}" method="post">
+                                                        <!-- これがないとエラーになる -->
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <p><button type="submit">削除</button></p>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </li>
+                                </div>
+                                @endforeach
+                                {{ $Texts->links() }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
