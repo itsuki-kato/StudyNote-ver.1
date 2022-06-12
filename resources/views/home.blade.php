@@ -12,19 +12,19 @@
     </div>
 @endsection @section('content') <div class="container">
     <div class="row justify-content-center">
+        <!-- 検索フォーム -->
+        <form action="{{ route('home') }}" method="get">
+            @csrf
+            <div class="header_input_search">
+                <input id="search_form" name="keyword" type="text" value="{{ $keyword }}">
+                <p><input id="search_btn" type="submit" value="search"></p>
+            </div>
+        </form>
         <div class="col-md-8">
-            <!-- 検索フォーム -->
-            <form action="{{ route('home') }}" method="get">
-                @csrf
-                <div class="header_input_search">
-                    <input name="keyword" type="text" value="{{ $keyword }}">
-                    <p><input type="submit" value="送信"></p>
-                </div>
-            </form>
             <div class="card">
                 <div class="card-header">
                     <span>学習メモ</span>
-                    <i class="fa-solid fa-cat"></i>
+                    <i class="fa-solid fa-cat" style="color: white;"></i>
                 </div>
                 <div class="card-body">
                     <!-- @if (session('status'))
@@ -74,7 +74,7 @@
                                                         <!-- これがないとエラーになる -->
                                                         @method('DELETE')
                                                         @csrf
-                                                        <p><button type="submit">削除</button></p>
+                                                        <p><button id="delete_btn" type="submit">削除</button></p>
                                                     </form>
                                                 </div>
                                             </td>
@@ -82,7 +82,7 @@
                                     </li>
                                 </div>
                                 @endforeach
-                                {{ $Texts->links() }}
+                                {{ $Texts->appends(request()->query())->links() }}
                         </ul>
                     </div>
                 </div>

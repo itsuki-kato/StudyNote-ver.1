@@ -34,7 +34,7 @@ class HomeController extends Controller
             $query = Text::query();
             $query
                 ->where('text', 'LIKE', "%{$keyword}%");
-            $Texts = $query->get();
+            $Texts = $query->paginate(2);
         // それ以外だったら全件取得する
         } else {
             $Texts = Text::orderBy('created_at')->paginate(2);

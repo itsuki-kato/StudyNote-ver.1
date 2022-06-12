@@ -1,18 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+body {
+    font-family: "Nikukyu";
+}
+
+/* 新規作成ボタンの相対位置を指定 */
+.navbar-expand-md .navbar-collapse {
+    position: relative;
+}
+
 ul {
     padding: 0px;
+}
+
+/* 新規作成ボタン */
+.header_input_create {
+    position: absolute;
+    right: 170px;
+    top: 10px;
+    width: 100px;
+    text-align: center;
+    color: #000;
+    background-color: #fff100;
+    border-bottom: 5px solid #ccc100;
+}
+
+.header_input_create:hover {
+    margin-top: 3px;
+    color: #000;
+    background: #fff20a;
+    border-bottom: 2px solid #ccc100;
+}
+
+.header_input_create a {
+    color: black;
+    text-decoration: none;
+}
+
+/* 検索フォーム */
+.header_input_search {
+    display: flex;
+    margin-left: 345px;
+    margin-top: 10px;
 }
 
 .header_input {
     display: flex;
 }
 
-.navbar-expand-md .navbar-nav {
-    margin-left: 350px;
+#search_form {
+    height: 40px;
 }
 
-.header_input_search {
-    display: flex;
-    margin-right: 50px;
+#search_btn {
+    width: 70px;
+    height: 40px;
+    border: 1px solid #000;
+    border-radius: 0;
+    color: white;
+    background: #000;
+}
+
+#search_btn:hover {
+    color: #000;
+    background: #fff;
+}
+
+.navbar-expand-md .navbar-nav {
+    margin-left: 50px;
 }
 
 .main_container {
@@ -36,10 +90,28 @@ ul {
     margin-right: 10px;
 }
 
+.card-header {
+    background: #4682b4;
+    border: 1px solid #ccc;
+}
+
+.card-header span {
+    color: #f5f5f5;
+}
+
 .list_wrapper {
     margin-bottom: 20px;
     padding: 10px;
     background: #f0f8ff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* リストをホバーした時のアニメーション */
+.list_wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 34px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+    transition: all .3s;
 }
 
 .list {
@@ -58,6 +130,25 @@ ul {
 
 .button_wrapper button {
     margin-left: 10px;
+    width: 60px;
+    border-radius: 5px;
+}
+
+#edit_btn,
+#delete_btn {
+    border: 1px solid #ccc;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fdfbfb), to(#ebedee));
+    background: -webkit-linear-gradient(top, #fdfbfb 0%, #ebedee 100%);
+    background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
+    -webkit-box-shadow: inset 1px 1px 1px #fff;
+    box-shadow: inset 1px 1px 1px #fff;
+}
+
+#edit_btn:hover,
+#delete_btn:hover {
+    background: -webkit-gradient(linear, left bottom, left top, from(#fdfbfb), to(#ebedee));
+    background: -webkit-linear-gradient(bottom, #fdfbfb 0%, #ebedee 100%);
+    background: linear-gradient(to top, #fdfbfb 0%, #ebedee 100%);
 }
 
 /* 編集ボタンを押下するまで非表示にする */
