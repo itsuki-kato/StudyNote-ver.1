@@ -20,19 +20,19 @@ ul {
     width: 100px;
     text-align: center;
     color: #000;
-    background-color: #fff100;
-    border-bottom: 5px solid #ccc100;
+    background-color: #66cdaa;
+    border-bottom: 5px solid #3cb371;
 }
 
 .header_input_create:hover {
     margin-top: 3px;
     color: #000;
-    background: #fff20a;
-    border-bottom: 2px solid #ccc100;
+    background: #66cdaa;
+    border-bottom: 2px solid #3cb371;
 }
 
 .header_input_create a {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 

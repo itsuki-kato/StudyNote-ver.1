@@ -69,6 +69,7 @@ class HomeController extends Controller
         $Text->user_id = $request->user()->id;
         $Text->category_id = $request->category;
         $Text->text = $request->text;
+        $Text->title = $request->title;
         $Text->save();
         return redirect('/home');
     }
@@ -100,6 +101,7 @@ class HomeController extends Controller
         $Text = Text::find($id);
         $Text->user_id = $request->user()->id;
         $Text->category_id = $request->category;
+        $Text->title = $request->title;
         $Text->text = $request->text;
         $Text->save();
 

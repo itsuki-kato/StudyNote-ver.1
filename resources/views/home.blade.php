@@ -39,8 +39,18 @@
                                     <li class="list">
                                         <table>
                                             <tr>
-                                                <th class="list_item">id</th>
-                                                <td>{{ $Text->id }}</td>
+                                                @foreach($Categories as $Category)
+                                                    @if($Text->category_id == $Category->id)
+                                                        <th class="list_item">カテゴリ名</th>
+                                                        <td>{{ $Category->name }}</td>
+                                                        <!-- 一致した時点でブレークする -->
+                                                        @break
+                                                    @endif
+                                                @endforeach
+                                            </tr>
+                                            <tr>
+                                                <th>タイトル</th>
+                                                <td>{{ $Text->title }}</td>
                                             </tr>
                                             <tr>
                                                 <th class="list_item">本文</th>
@@ -51,16 +61,6 @@
                                                         <textarea name="text" id="" cols="30" rows="10">{{ old('description', $Text->text) }}</textarea>
                                                     </td>
                                                 </tr>
-                                            </tr>
-                                            <tr>
-                                                @foreach($Categories as $Category)
-                                                    @if($Text->category_id == $Category->id)
-                                                        <th class="list_item">カテゴリ名</th>
-                                                        <td>{{ $Category->name }}</td>
-                                                        <!-- 一致した時点でブレークする -->
-                                                        @break
-                                                    @endif
-                                                @endforeach
                                             </tr>
                                         </table>
                                         <tr>

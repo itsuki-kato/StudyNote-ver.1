@@ -6,13 +6,21 @@
     <form action="{{ url('/create/new') }}" method="post">
         {{ csrf_field() }}
         <div>
+            <p>カテゴリ</p>
             <select name="category">
                 @foreach($Categories as $Category)
                     <option value="{{ $Category->id }}">{{ $Category->name }}</option>
                 @endforeach
             </select>
         </div>
-        <textarea name="text" id="" cols="30" rows="10"></textarea>
+        <div class="title_create">
+            <p>タイトル</p>
+            <textarea name="title" id="" cols="30" rows="2"></textarea>
+        </div>
+        <p>本文</p>
+        <div class="text_create">
+            <textarea name="text" id="" cols="30" rows="10"></textarea>
+        </div>
         @foreach ($errors->all() as $error)
             <p class="error_message">{{ $error }}</p>
         @endforeach
