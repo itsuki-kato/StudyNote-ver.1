@@ -44,7 +44,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="list_item">本文</th>
-                                                <td>{{ $Text->text }}</td>
+                                                <td>{!! nl2br(e($Text->text)) !!}</td>
                                                 <tr class="edit">
                                                     <th></th>
                                                     <td>
