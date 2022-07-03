@@ -1,16 +1,7 @@
 @extends('layouts.app')
 
-@section('sideNav')
-    <div class="sideNav">
-        <div class="category_nav">
-            <button>カテゴリフォルダ</button>
-            <button>カテゴリフォルダ</button>
-            <button>カテゴリフォルダ</button>
-            <button>カテゴリフォルダ</button>
-            <button>カテゴリフォルダ</button>
-        </div>
-    </div>
-@endsection @section('content') <div class="container">
+@section('content')
+<div class="container">
     <div class="row justify-content-center">
         <!-- 検索フォーム -->
         <form action="{{ route('home') }}" method="get">
@@ -37,23 +28,22 @@
                             @foreach($Texts as $Text)
                                 <div class="list_wrapper">
                                     <li class="list">
-                                        <table>
+                                        <table class="content_table">
                                             <tr>
                                                 @foreach($Categories as $Category)
                                                     @if($Text->category_id == $Category->id)
-                                                        <th class="list_item">カテゴリ名</th>
-                                                        <td>{{ $Category->name }}</td>
+                                                        <span class="category_lavel">{{ $Category->name }}</span>
                                                         <!-- 一致した時点でブレークする -->
                                                         @break
                                                     @endif
                                                 @endforeach
                                             </tr>
                                             <tr>
-                                                <th>タイトル</th>
-                                                <td>{{ $Text->title }}</td>
+                                                <th>Title</th>
+                                                <td class="font-weight-bold">{{ $Text->title }}</td>
                                             </tr>
                                             <tr>
-                                                <th class="list_item">本文</th>
+                                                <th class="list_item">Content</th>
                                                 <td>{!! nl2br(e($Text->text)) !!}</td>
                                                 <tr class="edit">
                                                     <th></th>
@@ -64,7 +54,6 @@
                                             </tr>
                                         </table>
                                         <tr>
-                                            <th></th>
                                             <td>
                                                 <div class="button_wrapper">
                                                     <a href="{{ route('edit', ['id' => $Text->id]) }}">
@@ -81,12 +70,13 @@
                                         </tr>
                                     </li>
                                 </div>
-                                @endforeach
-                                {{ $Texts->appends(request()->query())->links() }}
+                            @endforeach
+                            {{ $Texts->appends(request()->query())->links() }}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('create')
+@section('edit')
 <h2>新規作成</h2>
 <div class="create_new">
     <form action="{{ route('edit_save', ['id' => $Text->id]) }}" method="post">

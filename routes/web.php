@@ -19,19 +19,19 @@ Route::get('/', function () {
 Auth::routes();
 
 // TOPページ
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Text\TextController@index')->name('home');
 
 // 新規作成
-Route::get('/create', 'HomeController@create')->name('create');
+Route::get('/create', 'Text\TextController@create')->name('create');
 
 // 新規作成内容を保存
-Route::post('/create/new', 'HomeController@create_new')->name('create_new');
+Route::post('/create/new', 'Text\TextController@create_new')->name('create_new');
 
 // 編集
-Route::get('/edit/{id}', 'HomeController@edit')->name('edit');
+Route::get('/edit/{id}', 'Text\TextController@edit')->name('edit');
 
 // 編集内容を保存
-Route::post('/edit/{id}/save', 'HomeController@edit_save')->name('edit_save');
+Route::post('/edit/{id}/save', 'Text\TextController@edit_save')->name('edit_save');
 
 // 削除
-Route::delete('/delete/{id}', 'HomeController@delete')->name('delete');
+Route::delete('/delete/{id}', 'Text\TextController@delete')->name('delete');

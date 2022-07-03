@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Text;
 
 use Illuminate\Http\Request;
 use App\Text;
 use App\Category;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class TextController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,22 +27,21 @@ class HomeController extends Controller
     {
         // 検索フォームから送信されたキーワードを取得する
         $keyword = $request->input('keyword');
-        // dd($keyword);
-        // キーワードがあれば検索条件に合った一覧を表示する
-        if ($keyword) {
-            // dd($keyword);
-            $user_id = $request->user()->id;
-            $query = Text::query();
-            $query
-                ->where('text', 'LIKE', "%{$keyword}%");
-            $Texts = $query->paginate(2);
-        // それ以外だったら全件取得する
-        } else {
-            $Texts = Text::orderBy('created_at')->paginate(2);
-        }
 
         // 閲覧用のカテゴリ名を取得する。
         $Categories = Category::all();
+
+        // キーワードがあれば検索条件に合った一覧を表示する
+        if ($keyword) {
+            $user_id = $request->user()->id;
+            $query = Text::query();
+            $query
+                ->where('title', 'LIKE', "%{$keyword}%");
+            $Texts = $query->paginate(8);
+        } else {
+            // それ以外だったら全件取得する
+            $Texts = Text::orderBy('created_at')->paginate(8);
+        }
 
         return view('home', compact('Texts', 'Categories', 'keyword'));
     }
@@ -51,10 +51,9 @@ class HomeController extends Controller
      */
     public function create()
     {
-        $error_messages = '';
         $Categories = Category::all();
 
-        return view('create', compact('Categories', 'error_messages'));
+        return view('create', compact('Categories'));
     }
 
     /**
@@ -71,6 +70,7 @@ class HomeController extends Controller
         $Text->text = $request->text;
         $Text->title = $request->title;
         $Text->save();
+
         return redirect('/home');
     }
 
@@ -95,9 +95,6 @@ class HomeController extends Controller
      */
     public function edit_save(Request $request, $id)
     {
-        // $mode = $request->input('mode');
-        // dd($mode);
-
         $Text = Text::find($id);
         $Text->user_id = $request->user()->id;
         $Text->category_id = $request->category;
